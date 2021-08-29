@@ -118,7 +118,9 @@ func (m *Client) WatchLog(namespace, pod, clientId string, send chan<- LogMessag
 func (m *Client) GetPods() ([]PodInfo, error) {
 	ctx := context.Background()
 
-	pods, err := m.clientset.CoreV1().Pods("").List(ctx, v1.ListOptions{})
+	pods, err := m.clientset.CoreV1().Pods("").List(ctx, v1.ListOptions{
+		LabelSelector: "kube-log-viewer=enabled",
+	})
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get pods")
 	}

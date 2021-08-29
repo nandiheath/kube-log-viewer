@@ -95,6 +95,7 @@ func (s *Server) severWs(conn *websocket.Conn, namespace, pod string) {
 	//	}
 	//}
 }
+
 func (s *Server) Start() {
 
 	r := mux.NewRouter()
@@ -102,5 +103,5 @@ func (s *Server) Start() {
 	r.HandleFunc("/namespace/{namespace}/pod/{pod_name}/logs", s.watchLogs)
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
 	http.Handle("/", r)
-	log.Fatal(http.ListenAndServe("localhost:8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
