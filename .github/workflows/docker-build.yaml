@@ -31,4 +31,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: "nandiheath/kube-log-viewer:${{ $GITHUB_SHA }}"
+          tags: "nandiheath/kube-log-viewer:${{ github.sha }}"
